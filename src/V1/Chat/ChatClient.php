@@ -29,14 +29,24 @@ final class ChatClient
 
     public function createCompletion(ChatCompletionRequest $request): ChatCompletionResponse
     {
+        $body = [
+            'messages' => $request->messagesToArray(),
+            'max_tokens' => $request->getMaxTokens(),
+            'model' => $request->getModel(),
+            'temperature' => $request->getTemperature(),
+        ];
+
+        if ('json_schema' === $request->getResponseFormat()) {
+            $body['response_format'] = [
+                'type' => 'json_schema',
+                'json_schema' => $request->getJsonSchema(),
+            ];
+        }
+
         $response = $this->httpClient->post('/v1/chat/completions', [
-            RequestOptions::JSON => [
-                'messages' => $request->messagesToArray(),
-                'max_tokens' => $request->getMaxTokens(),
-                'model' => $request->getModel(),
-                'temperature' => $request->getTemperature(),
-            ],
+            RequestOptions::JSON => $body,
         ]);
+
 
         $response = $response->getBody()->getContents();
         $parsedResponse = json_decode($response, true);

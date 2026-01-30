@@ -16,6 +16,8 @@ final readonly class ChatCompletionRequest
         private string $model,
         private array $messages,
         private int $maxTokens,
+        private string $responseFormat = "text",
+        private ?array $jsonSchema = null,
         private float $temperature = 1.0,
     ) {
         if (empty($this->model)) {
@@ -24,6 +26,14 @@ final readonly class ChatCompletionRequest
         if ($this->temperature < 0 || $this->temperature > 2) {
             throw new InvalidArgumentException('temperature must be between 0 and 2');
         }
+        if (!in_array($this->responseFormat, ['text', 'json_schema'])) {
+            throw new InvalidArgumentException('response format is not valid. possible values "text", "json_schema"');
+        }
+
+        if($this->responseFormat == "json_schema" && $this->jsonSchema === null) {
+            throw new InvalidArgumentException('you must provide a jsonSchema if the responseFormat is "json_schema"');
+        }
+
     }
 
     public function getModel(): string
@@ -45,6 +55,18 @@ final readonly class ChatCompletionRequest
     {
         return $this->maxTokens;
     }
+
+    public function getResponseFormat(): string
+    {
+        return $this->responseFormat;
+    }
+
+    public function getJsonSchema(): ?array
+    {
+        return $this->jsonSchema;
+    }
+
+
 
     /**
      * @return array<int, array{role: string, content:string}>
