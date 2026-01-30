@@ -16,12 +16,11 @@ final class OpenAiClient
         private readonly string $apiKey,
         private readonly ?ClientInterface $client = null,
     ) {
-
         if (empty($this->apiKey)) {
             throw new \InvalidArgumentException('api key is required');
         }
 
-        if($client === null) {
+        if (null === $client) {
             $this->httpClient = new Client(
                 [
                     'base_uri' => 'https://api.openai.com',
@@ -34,7 +33,9 @@ final class OpenAiClient
                 ]
             );
         }
-
+        else {
+            $this->httpClient = $client;
+        }
     }
 
     public function chat(): ChatClient
