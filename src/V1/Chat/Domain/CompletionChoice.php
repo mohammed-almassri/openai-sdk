@@ -10,7 +10,7 @@ final readonly class CompletionChoice
     public static function from(array $choice): self
     {
         return new self(
-            message: completionMessage::from($choice['message']),
+            message: CompletionMessage::from($choice['message']),
         );
     }
 
