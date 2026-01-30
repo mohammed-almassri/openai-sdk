@@ -1,5 +1,7 @@
 <?php
-declare (strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Massrimcp\OpenAiSdk\V1\Chat\Dtos;
 
 use http\Exception\InvalidArgumentException;
@@ -8,10 +10,7 @@ use Massrimcp\OpenAiSdk\V1\Chat\Domain\CompletionMessage;
 final readonly class ChatCompletionRequest
 {
     /**
-     * @param string $model
      * @param array<CompletionMessage> $messages
-     * @param float $temperature
-     * @param int $maxTokens
      */
     public function __construct(
         private string $model,
@@ -20,10 +19,10 @@ final readonly class ChatCompletionRequest
         private float $temperature = 1.0,
     ) {
         if (empty($this->model)) {
-            throw new InvalidArgumentException("model cannot be empty");
+            throw new InvalidArgumentException('model cannot be empty');
         }
         if ($this->temperature < 0 || $this->temperature > 2) {
-            throw new InvalidArgumentException("temperature must be between 0 and 2");
+            throw new InvalidArgumentException('temperature must be between 0 and 2');
         }
     }
 
@@ -56,7 +55,7 @@ final readonly class ChatCompletionRequest
         foreach ($this->messages as $message) {
             $ret[] = $message->toArray();
         }
+
         return $ret;
     }
-
 }

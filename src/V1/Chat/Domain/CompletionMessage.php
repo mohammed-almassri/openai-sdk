@@ -1,5 +1,7 @@
 <?php
-declare (strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Massrimcp\OpenAiSdk\V1\Chat\Domain;
 
 final readonly class CompletionMessage
@@ -15,20 +17,16 @@ final readonly class CompletionMessage
     public function toArray(): array
     {
         return [
-            'role'    => $this->role,
+            'role' => $this->role,
             'content' => $this->content,
         ];
     }
 
-    /**
-     * @param array $message
-     * @return self
-     */
     public static function from(array $message): self
     {
         return new self(
-            role: $message["role"],
-            content: $message["content"],
+            role: $message['role'],
+            content: $message['content'],
         );
     }
 
@@ -41,5 +39,4 @@ final readonly class CompletionMessage
     {
         return $this->content;
     }
-
 }

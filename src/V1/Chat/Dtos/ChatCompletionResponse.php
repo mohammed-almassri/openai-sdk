@@ -1,5 +1,7 @@
 <?php
-declare (strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Massrimcp\OpenAiSdk\V1\Chat\Dtos;
 
 use Massrimcp\OpenAiSdk\V1\Chat\Domain\CompletionChoice;
@@ -7,7 +9,6 @@ use Massrimcp\OpenAiSdk\V1\Chat\Domain\CompletionChoice;
 final readonly class ChatCompletionResponse
 {
     /**
-     * @param string $id
      * @param array<CompletionChoice> $choices
      */
     public function __construct(

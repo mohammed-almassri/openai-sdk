@@ -1,4 +1,5 @@
 <?php
+
 namespace Massrimcp\OpenAiSdk\V1\Chat\Domain;
 
 final readonly class CompletionChoice
