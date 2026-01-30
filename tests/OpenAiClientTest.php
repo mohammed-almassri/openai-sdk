@@ -1,15 +1,16 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Massrimcp\tests;
 
-use Massrimcp\OpenAiClient\OpenAiClient;
+use Massrimcp\OpenAiSdk\OpenAiClient;
 use PHPUnit\Framework\TestCase;
 
-final class OpenAiClientTest extends TestCase
+final class OpenAiSdkTest extends TestCase
 {
-    public function testThrowsExceptionOnEmptyApiKey():void{
-        $client = new OpenAiClient("","");
+    public function testThrowsExceptionOnEmptyApiKey(): void
+    {
+        $client = new OpenAiClient("test-key");
 
     }
 }
