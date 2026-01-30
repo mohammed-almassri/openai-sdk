@@ -32,8 +32,7 @@ final class OpenAiClient
                     'timeout' => 60,
                 ]
             );
-        }
-        else {
+        } else {
             $this->httpClient = $client;
         }
     }
