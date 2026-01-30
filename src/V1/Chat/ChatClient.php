@@ -13,15 +13,17 @@ use Massrimcp\OpenAiSdk\V1\Chat\Dtos\ChatCompletionResponse;
 final class ChatClient
 {
     private static $instance;
+
     private function __construct(
         private readonly HttpClient $httpClient,
     ) {}
 
     public static function getInstance(HttpClient $httpClient): self
     {
-        if(self::$instance === null) {
+        if (null === self::$instance) {
             self::$instance = new self($httpClient);
         }
+
         return self::$instance;
     }
 

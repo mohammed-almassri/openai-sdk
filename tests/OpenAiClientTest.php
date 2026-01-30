@@ -22,13 +22,14 @@ final class OpenAiClientTest extends TestCase
         $client = new OpenAiClient('');
     }
 
-    public function testSendsChatMessage(): void{
+    public function testSendsChatMessage(): void
+    {
         $client = new OpenAiClient('api-key');
         $client->chat()->createCompletion(new ChatCompletionRequest(
-            model: "gpt-4o-mini",
+            model: 'gpt-4o-mini',
             maxTokens: 500,
             messages: [
-                new CompletionMessage(content: "test",role: "user")
+                new CompletionMessage(content: 'test', role: 'user'),
             ]
         ));
     }
