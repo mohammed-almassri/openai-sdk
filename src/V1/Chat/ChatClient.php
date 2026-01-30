@@ -47,7 +47,6 @@ final class ChatClient
             RequestOptions::JSON => $body,
         ]);
 
-
         $response = $response->getBody()->getContents();
         $parsedResponse = json_decode($response, true);
 
