@@ -12,13 +12,17 @@ use Massrimcp\OpenAiSdk\V1\Chat\Dtos\ChatCompletionResponse;
 
 final class ChatClient
 {
+    private static $instance;
     private function __construct(
         private readonly HttpClient $httpClient,
     ) {}
 
-    public static function fromRoot(HttpClient $httpClient): self
+    public static function getInstance(HttpClient $httpClient): self
     {
-        return new self($httpClient);
+        if(self::$instance === null) {
+            self::$instance = new self($httpClient);
+        }
+        return self::$instance;
     }
 
     public function createCompletion(ChatCompletionRequest $request): ChatCompletionResponse

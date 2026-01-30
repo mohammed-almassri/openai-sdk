@@ -39,7 +39,7 @@ final class OpenAiClient
 
     public function chat(): ChatClient
     {
-        return ChatClient::fromRoot($this->httpClient);
+        return ChatClient::getInstance($this->httpClient);
     }
 
     public function ping(): bool
